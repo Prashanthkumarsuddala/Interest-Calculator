@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interest Calculator</title>
+</head>
+<body>
+
+  <h1>Interest Calculator</h1>
+
+  <form>
+    <label>Select Interest Type:</label>
+    <br>
+    <input type="radio" id="compound" name="interestType" value="compound">
+    <label for="compound">Compound</label>
+    <input type="radio" id="simple" name="interestType" value="simple">
+    <label for="simple">Simple</label>
+    <br><br>
+    <label for="amount">Enter Amount:</label>
+    <input type="text" id="amount" name="amount">
+    <br><br>
+    <label for="months">Enter Months:</label>
+    <input type="text" id="months" name="months">
+    <br><br>
+    <label for="rate">Enter Rate of Interest per Month:</label>
+    <input type="text" id="rate" name="rate">
+    <br><br>
+    <input type="button" value="Submit" onclick="calculateInterest()">
+  </form> 
+
+  <p id="display"></p>
+
+  <script>
+    function calculateInterest() {
+      var interestType = document.querySelector('input[name="interestType"]:checked').value;
+      var amount = document.getElementById("amount").value;
+      var months = document.getElementById("months").value;
+      var rate = document.getElementById("rate").value;
+
+      if(interestType === "simple"){
+        var interest = (amount * months * rate) / 100;
+        document.getElementById("display").innerHTML = "The simple interest is: ₹" + interest;
+      }else if(interestType === "compound"){
+        var interest = amount * Math.pow((1 + rate / 100), months);
+        document.getElementById("display").innerHTML = "The compound interest is: ₹" + interest;
+      }
+    }
+  </script>
+
+</body>
+</html>
